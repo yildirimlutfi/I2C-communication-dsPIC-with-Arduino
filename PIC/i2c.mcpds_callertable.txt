@@ -1,0 +1,30 @@
+main
+	setupTimer
+	setupI2c
+		I2C2_Init
+			SetI2C2Ptrs
+			Get_Fosc_kHz
+			Delay_100ms
+			I2C2_Wait_For_Idle
+				I2C2_Is_Idle
+			Delay_1us
+			_Multiply_32x32
+			_Divide_32x32
+	rand
+		srand
+		_Multiply_32x32
+	sendMultipleDataViaI2c
+		I2C2_Start
+			I2C2_Is_Idle
+			I2C2_Is_Finished
+		I2C2_Write
+			I2C2_Is_Finished
+		I2C2_Stop
+			I2C2_Is_Finished
+	receiveMultipleDataViaI2c
+		I2C2_Start
+		I2C2_Write
+		I2C2_Read
+			I2C2_Is_Finished
+		I2C2_Stop
+Timer1Interrupt
